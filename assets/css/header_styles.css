@@ -1,0 +1,150 @@
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    padding: 15px 30px;
+}
+
+/* Brand Styling */
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+/* Navbar Menu */
+.navbar-nav1 {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-nav1 li {
+    list-style: none;
+}
+
+.navbar-nav1 a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.navbar-nav1 a:hover,
+.navbar-nav a.active {
+    color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.1);
+}
+
+/* Logout Button Styling */
+.logoutbtn {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logoutbtn a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.logoutbtn:hover {
+    background-color: #b71c1c;
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-nav1 {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding-top: 10px;
+    }
+}
+
+.label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.file-upload {
+    border: 2px dashed #d97706;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.file-upload:hover {
+    background: #fef3c7;
+}
+
+.submit-btn {
+    background: #d97706;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.submit-btn:hover {
+    background: #b45309;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px;
+}
+
+.foodtype {
+    padding: 10px;
+}
+
+.foodtype select {
+    padding: 10px;
+    margin-left: -10px;
+    border-radius: 10px;
+}
+
+.h1 {
+    text-align: center;
+    color: #d97706;
+}
