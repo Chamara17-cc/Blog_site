@@ -18,6 +18,10 @@ class User_Controller extends RestController
     {
         parent::__construct();
         $this->load->model('User_model');
+        $this->load->library('session');
+        $this->load->helper('url');
+        $this->load->library('form_validation');
+
         Configuration::instance([
             'cloud' => [
                 'cloud_name' => 'dnxl5zlbm',
@@ -38,6 +42,7 @@ class User_Controller extends RestController
 
     public function storeuser_post()
     {
+
         $this->load->model('User_model');
         $image_url = ''; // Default if no image is uploaded
 
@@ -56,31 +61,43 @@ class User_Controller extends RestController
             redirect('user/create_user_view');
             return;
         }
+        // Validate form data
+        $this->form_validation->set_validation('first_name', 'First Name', 'required|alpha');
+        $this->form_validation->set_validation('last_name', 'Last Name', 'required|alpha');
+        $this->form_validation->set_validation('phone_number', 'Phone Number', 'required|numeric');
+        $this->form_validation->set_validation('email', 'Email', 'required|valid_email|is_unique[users.email]');
+        $this->form_validation->set_validation('aboutme', 'About Me');
+        $this->form_validation->set_validation('password', 'Password', 'required|min_length[6]');
 
-        // Prepare data for database
-        $register_data = [
-            'first_name'        => $this->input->post('first_name'),
-            'last_name'         => $this->input->post('last_name'),
-            'phone_number'      => $this->input->post('phone_number'),
-            'email'             => $this->input->post('email'),
-            'aboutme'           => $this->input->post('aboutme'),
-            'gender'            => $this->input->post('gender'),
-            'state'             => $this->input->post('state'),
-            'city'              => $this->input->post('city'),
-            'dob'               => $this->input->post('dob'),
-            'profile_photo_link' => $image_url,
-            'password'          => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            'userrole'          => $this->input->post('userrole')
-        ];
-
-        // Register user
-        $result = $this->User_model->registerUser($register_data);
-        if ($result) {
-            $this->session->set_flashdata('success', 'User created successfully');
-            redirect('login/login_user');
+        if ($this->form_validation->run) {
+            $this->session->set_flashdata('error', validation_errors());
+            return;
         } else {
-            $this->session->set_flashdata('error', 'Failed to create user.');
-            redirect('success_message');
+            // Prepare data for database
+            $register_data = [
+                'first_name'        => $this->input->post('first_name'),
+                'last_name'         => $this->input->post('last_name'),
+                'phone_number'      => $this->input->post('phone_number'),
+                'email'             => $this->input->post('email'),
+                'aboutme'           => $this->input->post('aboutme'),
+                'gender'            => $this->input->post('gender'),
+                'state'             => $this->input->post('state'),
+                'city'              => $this->input->post('city'),
+                'dob'               => $this->input->post('dob'),
+                'profile_photo_link' => $image_url,
+                'password'          => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'userrole'          => $this->input->post('userrole')
+            ];
+
+            // Register user
+            $result = $this->User_model->registerUser($register_data);
+            if ($result) {
+                $this->session->set_flashdata('success', 'User created successfully');
+                redirect('login/login_user');
+            } else {
+                $this->session->set_flashdata('error', 'Failed to create user.');
+                redirect('success_message');
+            }
         }
     }
 }

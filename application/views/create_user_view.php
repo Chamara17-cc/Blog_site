@@ -55,7 +55,7 @@
                 <div class="col-xl-6 d-none d-xl-block">
                   <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/draw1.png"
                     alt="Sample photo" class="img-fluid"
-                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; " height="1000" /> 
+                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; " height="1000" />
                 </div>
                 <div class="col-xl-6">
                   <div class="card-body p-md-5 text-black">
