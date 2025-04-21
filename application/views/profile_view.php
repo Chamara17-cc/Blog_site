@@ -67,7 +67,7 @@
                 <button class="read-more-btn" data-post-id="<?= $post['postid']; ?>">Read More</button>
                 <div class="editdelete">
                     <a href=""><button style="background-color: green;">Edit</button></a>
-                    <a href="<?= base_url('deletepost/' . $post['postid'] .'/'. $post['userid']); ?>"> <button style="background-color: red;">Delete</button></a>
+                    <a href="<?= base_url('deletepost/' . $post['postid'] . '/' . $post['userid']); ?>" onclick="return confirm('Are you sure you want to delete this post?')"> <button style="background-color: red;">Delete</button></a>
                 </div>
             </div>
         </section>

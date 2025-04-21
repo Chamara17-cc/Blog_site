@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,10 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/add_post_styles.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/maincontainer.css'); ?>" />
 </head>
+
 <body>
     <div class="container">
-        <?php if ($this->session->flashdata('error')): ?>
-            <div class="alert alert-danger">
-                <?= $this->session->flashdata('error'); ?>
-            </div>
-        <?php endif; ?>
-
+       
         <h1 style="color:rgb(218, 113, 38);">Create a New Food Blog Post</h1>
         <form id="blogForm" action="<?= base_url('api/add_post_controller/addpost') ?>" method="post" enctype="multipart/form-data">
             <label for="image-upload">Upload Dish Image</label>
@@ -54,15 +51,16 @@
     </div>
 
     <script>
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function () {
-            var output = document.getElementById('image-preview');
-            output.src = reader.result;
-            output.style.display = 'block';
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('image-preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
         }
-        reader.readAsDataURL(event.target.files[0]);
-    }
     </script>
 </body>
+
 </html>

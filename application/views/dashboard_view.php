@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yummy - Delicious Healthy Food</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD@400,0,0">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/dashboard_styles.css'); ?>" />
@@ -14,6 +14,17 @@
 
 <body>
     <?php $this->load->view('header') ?>
+
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success">
+            <?= $this->session->flashdata('success'); ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($this->session->flashdata('error')): ?>
+        <div class="alert alert-danger">
+            <?= $this->session->flashdata('error'); ?>
+        </div>
+    <?php endif; ?>
     <section class="hero container">
         <div class="hero-content">
             <h1>Enjoy Your Healthy Delicious Food</h1>
@@ -64,7 +75,7 @@
                     <p><b>Instructions :</b> <?= $post['instructions']; ?></p>
                 </div>
             </div>
-
+            <!-- Like or dislike for posts -->
             <div class="like" style="margin-left: 35%;">
                 <button class="like-btn" data-postid="<?= $post['postid']; ?>" data-userid="<?= $post['userid']; ?>" data-liketype="1">
                     <span class="material-symbols-outlined">thumb_up</span>

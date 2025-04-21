@@ -57,10 +57,16 @@ class Add_Post_Controller extends RestController
                     'tags' => $this->input->post('tags')
                 ];
 
-                $this->Post_model->addPost($data);
-
-                $this->session->set_flashdata('success', 'Post added successfully!');
-                redirect('admin/dashboard');
+                $result = $this->Post_model->addPost($data);
+                if ($result) {
+                    // Set success message and redirect to the dashboard
+                    $this->session->set_flashdata('success', 'Post added successfully!');
+                    redirect('admin/dashboard');
+                } else {
+                    // Set error message and redirect to the dashboard
+                    $this->session->set_flashdata('error', 'Failed to add post!');
+                    redirect('admin/dashboard');
+                }
             } else {
                 $this->session->set_flashdata('error', 'Image upload failed!');
                 redirect('admin/dashboard');
@@ -98,7 +104,7 @@ class Add_Post_Controller extends RestController
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Post liked successfully.']);
         } else {
-            echo json_encode(['status' => 'fail', 'message' => 'Fail to like.']);
+            echo json_encode(['status' => 'fail', 'message' => 'Already liked']);
         }
     }
     // public function getPostLikes_get($postid)
