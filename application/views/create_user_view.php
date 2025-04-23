@@ -158,7 +158,7 @@
                           <!-- <label for="formFile" class="form-label">Upload Profile Photo</label>
                           <input class="form-control" type="file" id="formFile" name="profile_photo_link"> -->
 
-                          <label for="image-upload">Upload Dish Image</label>
+                          <label for="image-upload">Upload Your Image</label>
                           <div class="file-upload" onclick="document.getElementById('image-upload').click()">
                             <p>Click to upload or drag and drop</p>
                             <input type="file" id="image-upload" name="image" accept="image/*" style="display: none" onchange="previewImage(event)">

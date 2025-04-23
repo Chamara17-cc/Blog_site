@@ -86,6 +86,7 @@
                 <button class="like-btn" data-postid="<?= $post['postid']; ?>" data-userid="<?= $post['userid']; ?>" data-liketype="2">
                     <span class="material-symbols-outlined">thumb_down</span>
                 </button>
+                <a href="#" onclick="openModel()"><button class="commentbtn">Comments</button></a>
             </div>
         <?php endforeach; ?>
 
