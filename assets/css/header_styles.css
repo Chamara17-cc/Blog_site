@@ -1,12 +1,10 @@
-
-
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     width: 100%;
@@ -71,14 +69,14 @@
 }
 
 
-@media (max-width: 768px) {
+@media screen and (max-width: 770px) {
     .navbar {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px 20px;
     }
 
     .navbar-nav1 {
-        flex-direction: column;
         text-align: center;
         gap: 10px;
         padding-top: 10px;
@@ -147,4 +145,10 @@ textarea {
 .h1 {
     text-align: center;
     color: #d97706;
+}
+@media screen and (max-width: 770px) {
+    h1{
+        font-size: 1.5rem;
+    }
+    
 }
