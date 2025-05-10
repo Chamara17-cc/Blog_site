@@ -1,12 +1,17 @@
 <?php
 class Post_model extends CI_Model
 {
+
+    // This function is used to add a post to the database.
+    // It takes an associative array $data as input, which contains the post details.
+    //This will retun true if the insertion was successful, otherwise false.
     public function addPost($data)
     {
         $this->db->insert('posts', $data);
         return ($this->db->affected_rows() > 0);
     }
-
+    //This fuction will get random posts form the database.
+    //This will return an array of posts if successful, otherwise an empty array.
     public function getRandomPosts()
     {
         $this->db->select('posts.*, users.first_name, users.last_name');
@@ -19,7 +24,8 @@ class Post_model extends CI_Model
 
         return ($query->num_rows() > 0) ? $query->result_array() : [];
     }
-
+    //This function will get all posts from the database that match for loggedin userid.
+    //This will return an array of posts if successful, otherwise an empty array.
     public function getUserPosts($userid)
     {
         $this->db->select('*');
@@ -35,24 +41,24 @@ class Post_model extends CI_Model
         $this->db->where('postid', $postid);
         return $this->db->delete('posts');
     }
+    //When user click on like or dislike button this will store its userid and postid in the database
+    //If successful, it will return true, otherwise false.
     public function updateLike($data)
     {
-        // $this->db->where('postid', $data['postid']);
-        // $this->db->where('userid', $data['userid']);
-        // $query = $this->db->get('likes');
+        $this->db->where('postid', $data['postid']);
+        $this->db->where('userid', $data['userid']);
+        $query = $this->db->get('likes');
 
-        // if ($query->num_rows() > 0) {
-        //     $this->db->where('postid', $data['postid']);
-        //     $this->db->where('userid', $data['userid']);
-        //     return $this->db->delete('likes');
-        // } else {
-        //     return $this->db->insert('likes', $data);
-
-        // }
-        $this->db->insert('likes', $data);
-        return ($this->db->affected_rows() > 0);
+        if ($query->num_rows() > 0) {
+            return false;
+        } else {
+            $this->db->insert('likes', $data);
+            return ($this->db->affected_rows() > 0);
+        }
     }
 
+    //This function will get the post reactions (like and dislike counts) for a specific post.
+    //It takes the post ID as input and returns an object with like_count and dislike_count properties.
     public function getPostReactions($postid)
     {
         $this->db->select("
